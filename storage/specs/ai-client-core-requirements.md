@@ -18,8 +18,8 @@ Gemini および Anthropic Claude の API を統合し、Edge Runtime 対応の�
 
 ### REQ-AC-001: Gemini テキスト生成
 
-> **When** the caller provides a prompt and GeminiConfig,
-> **the system shall** call the Google Generative Language API and return the generated text as a string.
+> **WHEN** the caller provides a prompt and GeminiConfig,
+> **the system SHALL** call the Google Generative Language API and return the generated text as a string.
 
 **受入条件**:
 - `fetchGeminiContent(prompt, config)` が `Promise<string>` を返す
@@ -31,8 +31,8 @@ Gemini および Anthropic Claude の API を統合し、Edge Runtime 対応の�
 
 ### REQ-AC-002: Gemini レート制限エラー処理
 
-> **When** the Gemini API returns HTTP 429,
-> **the system shall** throw a `GeminiRateLimitError` with a user-friendly Japanese message.
+> **WHEN** the Gemini API returns HTTP 429,
+> **the system SHALL** throw a `GeminiRateLimitError` with a user-friendly Japanese message.
 
 **受入条件**:
 - `GeminiRateLimitError` は `Error` を継承する
@@ -43,8 +43,8 @@ Gemini および Anthropic Claude の API を統合し、Edge Runtime 対応の�
 
 ### REQ-AC-003: Anthropic テキスト生成
 
-> **When** the caller provides a userMessage and AnthropicConfig,
-> **the system shall** call the Anthropic Messages API and return the generated text as a string.
+> **WHEN** the caller provides a userMessage and AnthropicConfig,
+> **the system SHALL** call the Anthropic Messages API and return the generated text as a string.
 
 **受入条件**:
 - `fetchAnthropicContent(userMessage, config)` が `Promise<string>` を返す
@@ -57,8 +57,8 @@ Gemini および Anthropic Claude の API を統合し、Edge Runtime 対応の�
 
 ### REQ-AC-004: Edge Runtime 対応
 
-> **Where** the library is used in Vercel Edge Functions or Cloudflare Workers,
-> **the system shall** function correctly using only the Fetch API.
+> **WHERE** the library is used in Vercel Edge Functions or Cloudflare Workers,
+> **the system SHALL** function correctly using only the Fetch API.
 
 **受入条件**:
 - `node:fs`, `node:path`, `node:crypto` 等の Node.js 組み込みモジュールを使用しない
@@ -70,7 +70,7 @@ Gemini および Anthropic Claude の API を統合し、Edge Runtime 対応の�
 
 ### REQ-AC-005: 型安全な公開 API
 
-> **The system shall** export fully typed interfaces and functions for all public API.
+> **The system SHALL** export fully typed interfaces and functions for all public API.
 
 **受入条件**:
 - `GeminiConfig`, `AnthropicConfig` インターフェースが export される
