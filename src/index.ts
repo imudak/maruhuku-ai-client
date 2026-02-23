@@ -1,2 +1,2 @@
-export * from "./gemini.js";
-export * from "./anthropic.js";
+export * from "./gemini";
+export * from "./anthropic";
