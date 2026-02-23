@@ -1,0 +1,40 @@
+name: "@maruhuku/ai-client"
+version: "0.1.0"
+description: "Maruhuku プロジェクト共通 AI API クライアントライブラリ"
+type: "npm-package"
+runtime: "edge"
+
+repository:
+  owner: imudak
+  name: maruhuku-ai-client
+  visibility: private
+
+consumers:
+  - name: shogi-commentary-generator
+    repo: imudak/shogi-commentary-generator
+    runtime: edge  # export const runtime = "edge"
+  - name: ai-meeting-notes
+    repo: imudak/ai-meeting-notes
+    runtime: node  # Vercel Node.js Functions
+
+providers:
+  - id: gemini
+    api: "https://generativelanguage.googleapis.com/v1beta/models"
+    default_model: "gemini-2.0-flash"
+    error_class: GeminiRateLimitError
+
+  - id: anthropic
+    api: "https://api.anthropic.com/v1/messages"
+    default_model: "claude-sonnet-4-20250514"
+
+requirements:
+  - id: REQ-AC-001
+    text: "When Gemini APIキーが設定されている場合、GeminiAPIを呼び出してテキストを生成SHALL"
+  - id: REQ-AC-002
+    text: "Gemini APIが429エラーを返す場合、GeminiRateLimitErrorを投げるSHALL"
+  - id: REQ-AC-003
+    text: "When Anthropic APIキーが提供される場合、Anthropic APIを呼び出してテキストを生成SHALL"
+  - id: REQ-AC-004
+    text: "全関数はEdge Runtime対応（fetch APIのみ使用）でなければならないSHALL"
+  - id: REQ-AC-005
+    text: "パッケージはESモジュールとして提供されるSHALL"
