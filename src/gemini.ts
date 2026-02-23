@@ -7,7 +7,7 @@
 
 export interface GeminiConfig {
   apiKey: string;
-  model?: string;          // デフォルト: "gemini-2.0-flash"
+  model?: string;          // デフォルト: "gemini-2.5-flash"
   maxOutputTokens?: number;
   system?: string;         // system_instruction として渡す（オプション）
 }
@@ -30,7 +30,7 @@ export async function fetchGeminiContent(
   prompt: string,
   config: GeminiConfig
 ): Promise<string> {
-  const { apiKey, model = "gemini-2.0-flash", maxOutputTokens = 2000, system } = config;
+  const { apiKey, model = "gemini-2.5-flash", maxOutputTokens = 2000, system } = config;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   const body: Record<string, unknown> = {
